@@ -1,6 +1,6 @@
 let marvel = {
     render: function() {
-        let url = 'http://gateway.marvel.com/v1/public/characters?ts=1&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad'
+        let url = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad'
         let footer = document.getElementById("footer")
         let marvelContainer = document.getElementById("marvel-container")
     
