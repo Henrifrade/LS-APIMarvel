@@ -1,4 +1,8 @@
 <!doctype html>
+<!-- 
+https://marvel.com/characters/browse
+https://developer.marvel.com/
+-->
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -6,14 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/sticky-footer-navbar.css">
     <title>Marvelist - Alternative search engine for MARVEL API</title>
   </head>
   <body>
-    <nav class="navbar navbar-light">
+    <!-- Aqui é o menu hamburguer que fica no topo do site -->
+    <nav class="navbar navbar-light bg-secondary">
       <div class="container">
-        <a class="navbar-brand" href="#">Navbar Icon</a>
+        <a class="navbar-brand" href="#">
+          <img src="images/logo-1.png" style="width: 10rem;"alt="logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link text-white" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -32,23 +40,42 @@
         </ul>
       </div>
     </nav>
-
+    <!-- Caixa de pesquisa -->
     <div class="container">
-      <h1>MARVELIST</h1>
-      <div class="container">
-        <form>
-          <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search on Marvelist">
-          </div>
-        </form>
+      <div class="row ">
+        <h3 class="text-left">Character Index A-Z</h3>
+      </div>
+      <div class="row">
+        <div class="col-xl-10">
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search on Marvelist">
+        </div>
+        <div class="col-xl-auto"> 
+          <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+      </div>
+      <div class="row">
+        <p class="text-muted">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
       </div>
     </div>
-    
+    <!-- Onde é inserido na pagina o que vem da API -->
+    <div id="marvel-container"></div>
+        
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted" id="footer">Footer</p>
+      </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Aqui é o jquery slim que veio com o bootstrap, desativado por conta que foi necessario o completo pra acessar a funcao $.ajax no main.js
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    
+    <!-- Aqui fica o JavaScript -->
+    <script type="text/JavaScript" src="js/main.js"></script>
   </body>
 </html>
