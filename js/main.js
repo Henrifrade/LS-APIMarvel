@@ -17,7 +17,7 @@ let homeLoaded = document.querySelector('#loaded')
 let loadSearch = document.querySelector('#load-search')
 let footer = document.querySelector('#footer')
 
-
+console.log('main.js carregado.')
 // Função que recebe o resultado de pesquisa
 let searchResponse = (searchChar) => {
     return searchChar.data.results
