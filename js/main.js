@@ -10,6 +10,7 @@ const baseEvents    = ``
 const baseCreators  = ``
 const baseCharacter = `characters?name=`
 
+// selecao dos ids do html
 let searchInputElm = document.querySelector('#search-input')
 let searchBtn = document.querySelector('#search-btn')
 let homeLoading = document.querySelector('#loading')
@@ -17,21 +18,40 @@ let homeLoaded = document.querySelector('#loaded')
 let loadSearch = document.querySelector('#load-search')
 let footer = document.querySelector('#footer')
 
-console.log('main.js carregado.')
+
+// ================== Funções =================== //
+
 // Função que recebe o resultado de pesquisa
 let searchResponse = (searchChar) => {
-    return searchChar.data.results
+
+    if (searchChar.data.results != ''){
+        console.log('Sucesso ao procurar personagem na API')
+        return searchChar.data.results
         .map(
             item =>
-            `<div class="card" id="card-style" style="width: 35vh;">
-                <img class="card-img-top" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
-                <div class="card-body">
-                    <h5 class="card-title text-center">${item.name}</h5>
+            `<div class="col-sm-12">
+                <div class="card" id="card-style">
+                    <img class="card-img-top" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">${item.name}</h5>
+                    </div>
                 </div>
             </div>`
         )
         .join('')
+    } else {
+        console.log('data.results vazio, nao encontrou nenhum personagem.')
+        let retorno =
+            `<div class="text-center col-md-12">
+                <i class="material-icons">error</i>
+                <p>Character not found.</p>
+                <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
+            </div>`
+        return retorno
+    }
 }
+
+// ================= Event Listeners ================ //
 
 // Event Listener do botao de pesquisa
 searchBtn.addEventListener('click', () => {
@@ -47,11 +67,11 @@ searchBtn.addEventListener('click', () => {
         .then(searchChar => {
             if(searchChar.error) {
                 // TO DO
-                console.log('Erro')
+                console.log('Fetch Erro')
             } else {
                 homeLoaded.innerHTML = searchResponse(searchChar)
 
-                console.log('OK')
+                console.log('Fetch OK')
                 footer.innerHTML = searchChar.attributionHTML
                 homeLoading.style.display = 'none'
                 homeLoaded.style.display = 'flex'
@@ -60,7 +80,7 @@ searchBtn.addEventListener('click', () => {
 })
 
 
-// Event listerner de Enter e esc
+// Event listerner de Enter e ESC
 searchInputElm.addEventListener('keyup', () => {
     if (event.key === 'Enter') {
         searchBtn.click();
