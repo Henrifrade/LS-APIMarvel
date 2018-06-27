@@ -3,7 +3,7 @@
     background-repeat: repeat;
 }
 
-input[type="text"], button[type="submit"]{
+#search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
     height: 50% !important;
     width: 100% !important;
     box-shadow: none !important;
@@ -13,15 +13,34 @@ input[type="text"], button[type="submit"]{
     transform: skewX(-7deg);
 }
 
+#search-zone-navbar input[type="search"], #search-zone-navbar button[type="submit"] {
+    transform: skewX(-5deg);
+    border: 2px solid #C82333;
+    box-shadow: none;
+    border-radius: 2px;
+    box-sizing: content-box;
+}
+
+#search-zone-navbar button[type="submit"] {
+    margin-left: -5%;
+}
+
 #navbar-id {
-    box-shadow:1px 3px 20px rgb(221, 220, 220);
+    box-shadow:1px 3px 5px rgb(221, 220, 220);
 }
 
 /* media queries - com tamanhos padrão do bootstrap */
 
 @media (max-width: 576px) {
-    input[type="text"], button[type="submit"] {
+    #search-zone-main input[type="search"], #search-zone-main button[type="submit"] {
         width: 94% !important;
+    }
+    #search-zone-navbar input[type="search"], #search-zone-navbar button[type="submit"] {
+        width: 94% !important;
+    }
+
+    #search-zone-navbar button[type="submit"] {
+       margin-left: 0%;
     }
     #loading {
         display: flex;
