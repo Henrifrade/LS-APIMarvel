@@ -29,7 +29,7 @@ let searchResponse = (searchChar) => {
         return searchChar.data.results
         .map(
             item =>
-            `<div class="col-sm-12">
+            `<div class="d-flex justify-content-center" style="margin-bottom: 2%;">
                 <div class="card" id="card-style">
                     <img class="card-img-top" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
                     <div class="card-body">
@@ -74,7 +74,7 @@ searchBtn.addEventListener('click', () => {
                 console.log('Fetch OK')
                 footer.innerHTML = searchChar.attributionHTML
                 homeLoading.style.display = 'none'
-                homeLoaded.style.display = 'flex'
+                homeLoaded.style.display = 'grid'
             }
         })
 })
