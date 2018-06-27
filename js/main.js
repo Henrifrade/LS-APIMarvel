@@ -1,3 +1,92 @@
+// codigo feito usando o material do ifpb-github
+ 
+// urls padrão de requisição da API
+const baseUrlStart  = `https://gateway.marvel.com/v1/public/`
+const baseUrlEnd    = `&ts=1&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad`
+const baseComics    = ``
+const baseSeries    = ``
+const baseStories   = ``
+const baseEvents    = ``
+const baseCreators  = ``
+const baseCharacter = `characters?name=`
+
+let searchInputElm = document.querySelector('#search-input')
+let searchBtn = document.querySelector('#search-btn')
+let homeLoading = document.querySelector('#loading')
+let homeLoaded = document.querySelector('#loaded')
+let loadSearch = document.querySelector('#load-search')
+let footer = document.querySelector('#footer')
+
+
+// Função que recebe o resultado de pesquisa
+let searchResponse = (searchChar) => {
+    return searchChar.data.results
+        .map(
+            item =>
+            `<div class="card" id="card-style" style="width: 35vh;">
+                <img class="card-img-top" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
+                <div class="card-body">
+                    <h5 class="card-title text-center">${item.name}</h5>
+                </div>
+            </div>`
+        )
+        .join('')
+}
+
+// Event Listener do botao de pesquisa
+searchBtn.addEventListener('click', () => {
+    
+    let searchInput = searchInputElm.value.replace(" ", "%20")
+    let url = `https://gateway.marvel.com/v1/public/characters?name=${searchInput}&ts=1&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad`
+    console.log(url)
+    homeLoading.style.display = 'flex'
+    homeLoaded.style.display = 'none'
+
+    fetch(url)
+        .then(res => res.json())
+        .then(searchChar => {
+            if(searchChar.error) {
+                // TO DO
+                console.log('Erro')
+            } else {
+                homeLoaded.innerHTML = searchResponse(searchChar)
+
+                console.log('OK')
+                footer.innerHTML = searchChar.attributionHTML
+                homeLoading.style.display = 'none'
+                homeLoaded.style.display = 'flex'
+            }
+        })
+})
+
+
+// Event listerner de Enter e esc
+searchInputElm.addEventListener('keyup', () => {
+    if (event.key === 'Enter') {
+        searchBtn.click();
+    } else if (event.key === 'Escape') {
+        searchInputElm.value = ''
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* codigo feito usando jquery
 let marvel = {
     render: function() {
         let url = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad'
@@ -47,3 +136,5 @@ let marvel = {
     }
 }
 marvel.render()
+
+*/
