@@ -29,10 +29,10 @@ https://developer.marvel.com/
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="page2.html">Página de Teste  <span class="badge badge-danger" style="font-size: 9px; vertical-align: top;">Beta</span></a>
+              <a class="nav-link" href="#">Página de Teste  <span class="badge badge-danger" style="font-size: 9px; vertical-align: top;">Beta</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,37 +49,13 @@ https://developer.marvel.com/
               <a class="nav-link disabled" href="#">Disabled</a>
             </li>
           </ul>
+          <form class="form-inline my-2 my-lg-0" id="search-zone-navbar">
+            <input class="col-md-6 form-control mr-sm-2" id="search-input" type="search" placeholder="Search on Marvelist" aria-label="Search">
+            <button class="btn text-white bg-danger btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
+          </form>
         </div>
       </nav>
-
-    <!-- Caixa de pesquisa -->
-    <div class="container">
-      <div class="justify-content-center row ">
-        <div class="col-md-6">
-          <h3 class="text-left">Character Index A-Z</h3>
-        </div>
-      </div>
-      <div class="justify-content-center row" id="search-zone-main">
-        <div class="col-md-5">
-          <input type="search" class="form-control" id="search-input" placeholder="Search on Marvelist">
-        </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-danger" id="search-btn" style="margin-left: -5px;">
-            <i class="material-icons">search</i>
-          </button>
-        </div>
-      </div>
-      
-      <!-- Tentativa de implementar um [A-Z] que lista todos os personagens por letra 
-      <div class="row">
-        <div class="container" role="group">
-           https://getbootstrap.com/docs/3.3/components/
-          <p class="font-weight-bold text-center text-muted">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
-        </div> 
-      </div> -->
-    </div>
-
-    <!-- Loading -->
+      <!-- Loading -->
     <div class="container" id="load-search">
       <div class="container col-sm-1" id="loading" style="display: none;">
         <img src="images/loading/loading.gif" alt="loading" style="width: 75%; height: 75%;">
@@ -99,6 +75,6 @@ https://developer.marvel.com/
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <!-- Aqui fica o JavaScript do projeto -->
-    <script type="text/JavaScript" src="js/page2.js"></script>
+    <script type="text/JavaScript" src="js/main.js"></script>
   </body>
 </html>

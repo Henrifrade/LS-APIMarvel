@@ -29,6 +29,10 @@
     box-shadow:1px 3px 5px rgb(221, 220, 220);
 }
 
+#loaded {
+    flex-direction: row;
+}
+
 /* media queries - com tamanhos padrão do bootstrap */
 
 @media (max-width: 576px) {
@@ -48,11 +52,14 @@
         width: 50%;
         height: 50%;
     }
-}
-@media (min-width: 768px) {
     
 }
-@media (min-width: 992px) {
+@media (max-width: 768px) {
+    #loaded {
+        flex-direction: column;
+    }
+}
+@media (max-width: 992px) {
     
 }
 @media (min-width: 1200px) {
