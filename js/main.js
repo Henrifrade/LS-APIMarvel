@@ -94,12 +94,9 @@ let searchResponse = (searchChar) => {
 searchBtn.addEventListener('click', () => {
     
     let searchInput = searchInputElm.value.replace(" ", "%20")
-    let url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
-    console.log(url)
-    homeLoading.style.display = 'flex'
-    homeLoaded.style.display = 'none'
 
-    if(searchInput.value == ''){
+
+    if(searchInputElm.value == ''){
         let retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
@@ -108,7 +105,11 @@ searchBtn.addEventListener('click', () => {
             </div>`
         homeLoaded.innerHTML = retorno
     }else{
-
+        let url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        console.log(url)
+        homeLoading.style.display = 'flex'
+        homeLoaded.style.display = 'none'
+        
     fetch(url)
         .then(res => res.json())
         .then(searchChar => {
