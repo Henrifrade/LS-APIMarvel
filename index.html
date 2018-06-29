@@ -62,7 +62,16 @@ https://developer.marvel.com/
       </div>
       <div class="justify-content-center row" id="search-zone-main">
         <div class="col-md-5">
-          <input type="search" class="form-control" id="search-input" placeholder="Search on Marvelist">
+          <div class="input-group ">
+            <div class="input-group-prepend col-md-9">
+                <input type="search" class="form-control" id="search-input" placeholder="Search on Marvelist">
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Filters..</option>
+                <option value="1">Characters</option>
+                <option value="2">Comics</option>
+              </select>
+          </div>
         </div>
         <div class="col-md-1">
           <button type="submit" class="btn btn-danger" id="search-btn" style="margin-left: -5px;">

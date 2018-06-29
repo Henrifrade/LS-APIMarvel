@@ -29,7 +29,7 @@ body {
 }
 
 #search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
-    height: 50% !important;
+    height: 55% !important;
     width: 100% !important;
     box-shadow: none !important;
     box-sizing: content-box !important;
@@ -39,7 +39,7 @@ body {
 }
 
 #search-zone-navbar input[type="search"], #search-zone-navbar button[type="submit"] {
-    transform: skewX(-5deg);
+    transform: skewX(-4deg);
     border: 2px solid #C82333;
     box-shadow: none;
     border-radius: 2px;
@@ -60,6 +60,14 @@ body {
 
 #search-input {
     text-transform: uppercase;
+}
+
+#inputGroupSelect01 {
+    margin-left: -20px;
+    transform: skewX(-4deg);
+    box-shadow: none;
+    border: 2px solid #C82333;
+    padding-bottom: -10px;
 }
 
 /* media queries - com tamanhos padrão do bootstrap */
@@ -86,6 +94,13 @@ body {
 @media (max-width: 768px) {
     #loaded {
         flex-direction: column;
+    }
+    #search-zone-main input[type="search"], #search-zone-main button[type="submit"] {
+        margin-bottom: 2%;
+    }
+    #inputGroupSelect01 {
+        margin: 0%;
+        margin-bottom: 2%;
     }
 }
 @media (max-width: 992px) {
