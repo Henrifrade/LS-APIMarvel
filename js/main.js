@@ -81,7 +81,7 @@ let searchResponse = (searchChar) => {
         let retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
-                <p>Character not found!</p>
+                <p style="padding-bottom:0px">Character not found!</p>
                 <p>I guess my maximum effort doesn't work anymore.</p>
                 <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
             </div>`
