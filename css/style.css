@@ -26,8 +26,11 @@ body {
 
 #btn-modal {
     padding: 0%;
+    border: 0px !important;
 }
-
+#btn-modal:hover{
+    cursor: pointer;  
+}
 #search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
     height: 55% !important;
     width: 100% !important;
