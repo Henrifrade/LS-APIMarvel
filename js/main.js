@@ -95,14 +95,12 @@ searchBtn.addEventListener('click', () => {
     
     let searchInput = searchInputElm.value.replace(" ", "%20")
 
-    console.log(searchInputElm)
-    console.log(searchInputElm.value)
     if(searchInputElm.value == ''){
         let retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
                 <p>My spider-sense is telling me you should type something.</p>
-                <img src="images/spidermanNoSpace.png" style="heigth: 100px; width: 150px;">
+                <img src="images/spidermanNoSpace.jpg" style="heigth: 100px; width: 150px;">
             </div>`
         homeLoaded.innerHTML = retorno
     }else{
