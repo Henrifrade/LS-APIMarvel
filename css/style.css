@@ -98,6 +98,13 @@ body {
     #search-zone-main input[type="search"], #search-zone-main button[type="submit"] {
         margin-bottom: 2%;
     }
+    #card-full {
+        display: flex;
+        justify-content: center;
+    }
+    #card-style {
+        width: 70% !important;
+    }
     #inputGroupSelect01 {
         margin: 0%;
         margin-bottom: 2%;
@@ -107,5 +114,5 @@ body {
     
 }
 @media (min-width: 1200px) {
-    
+
 }

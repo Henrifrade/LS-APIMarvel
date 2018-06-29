@@ -38,7 +38,7 @@ let searchResponse = (searchChar) => {
         return searchChar.data.results
         .map(
             item =>
-            `<div class="col-md-3" style="margin-bottom: 2%;">
+            `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
                 <div class="card border-0" id="card-style">
                     <div id="img-border">
                         <div id="img-border-background">
