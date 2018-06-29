@@ -106,8 +106,7 @@ searchBtn.addEventListener('click', () => {
                 <p>My spider-sense is telling me you should type something.</p>
                 <img src="images/spidermanNoSpace.png" style="heigth: 100px; width: 150px;">
             </div>`
-        return retorno
-
+        homeLoaded.innerHTML = retorno
     }else{
 
     fetch(url)
