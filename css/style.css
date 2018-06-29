@@ -24,9 +24,6 @@ body {
     transition: border .2s linear;
 }
 
-#img-border-background:hover {
-}
-
 #btn-modal {
     padding: 0%;
 }
