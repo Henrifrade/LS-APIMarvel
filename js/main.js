@@ -95,7 +95,8 @@ searchBtn.addEventListener('click', () => {
     
     let searchInput = searchInputElm.value.replace(" ", "%20")
 
-
+    console.log(searchInputElm)
+    console.log(searchInputElm.value)
     if(searchInputElm.value == ''){
         let retorno =
             `<div class="text-center col-md-12">
@@ -109,7 +110,7 @@ searchBtn.addEventListener('click', () => {
         console.log(url)
         homeLoading.style.display = 'flex'
         homeLoaded.style.display = 'none'
-        
+
     fetch(url)
         .then(res => res.json())
         .then(searchChar => {
