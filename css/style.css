@@ -1,6 +1,34 @@
+body {
+    font-family: 'Oswald', sans-serif !important;
+}
 .bg {
     background-image: url("https://i1.wp.com/lelandswallpaper.com/wp-content/uploads/2017/05/DY0270-York-Wallcoverings-Disney-Kids-3-Marvel-Comics-Wallpaper-Black.jpg");
     background-repeat: repeat;
+}
+
+.card:hover {
+    background-color: rgb(228, 228, 228) !important;
+    box-shadow: 5px 5px;
+    border-radius: 0% !important;
+    margin-bottom: 2%;
+}
+
+.card:hover .card-title {
+    padding-left: 10px;
+    background-color: rgb(175, 175, 175) !important;
+    padding-bottom: 5px;
+    box-shadow: 2px 2px;
+}
+#card-style:hover {
+    border: 4px inset gray !important;
+    transition: border .2s linear;
+}
+
+#img-border-background:hover {
+}
+
+#btn-modal {
+    padding: 0%;
 }
 
 #search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
@@ -31,6 +59,10 @@
 
 #loaded {
     flex-direction: row;
+}
+
+#search-input {
+    text-transform: uppercase;
 }
 
 /* media queries - com tamanhos padrão do bootstrap */

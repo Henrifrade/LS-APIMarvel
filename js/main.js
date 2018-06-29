@@ -39,12 +39,16 @@ let searchResponse = (searchChar) => {
         .map(
             item =>
             `<div class="col-md-3" style="margin-bottom: 2%;">
-                <div class="card" id="card-style">
-                    <img class="card-img-top" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
+                <div class="card border-0" id="card-style">
+                    <div id="img-border">
+                        <div id="img-border-background">
+                            <img class="card-img-top rounded-0" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">${item.name}</h5>
+                        <h5 class="card-title text-left">${item.name}</h5>
                     <!-- Button trigger modal -->
-                        <button type="button" class="container btn btn-danger" data-toggle="modal" data-target="#t${item.id}">
+                        <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
                             <p>Character Info</p>
                         </button>
                     </div>
