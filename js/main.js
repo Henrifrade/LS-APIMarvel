@@ -99,6 +99,17 @@ searchBtn.addEventListener('click', () => {
     homeLoading.style.display = 'flex'
     homeLoaded.style.display = 'none'
 
+    if(searchInput == ''){
+        let retorno =
+            `<div class="text-center col-md-12">
+                <i class="material-icons">error</i>
+                <p>My spider-sense is telling me you should type something.</p>
+                <img src="images/spidermanNoSpace.png" style="heigth: 100px; width: 150px;">
+            </div>`
+        return retorno
+
+    }else{
+
     fetch(url)
         .then(res => res.json())
         .then(searchChar => {
@@ -113,6 +124,7 @@ searchBtn.addEventListener('click', () => {
                 homeLoaded.style.display = 'flex'
             }
         })
+}
 })
 
 // Event listerner de Enter e ESC
