@@ -99,7 +99,7 @@ searchBtn.addEventListener('click', () => {
     homeLoading.style.display = 'flex'
     homeLoaded.style.display = 'none'
 
-    if(searchInput == ''){
+    if(searchInput.value == ''){
         let retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
