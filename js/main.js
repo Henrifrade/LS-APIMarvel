@@ -81,7 +81,7 @@ let searchResponse = (searchChar) => {
         let retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
-                <p>Character not found.</p>
+                <p>I guess my maximum doesn't work anymore. Character not found!</p>
                 <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
             </div>`
         return retorno
