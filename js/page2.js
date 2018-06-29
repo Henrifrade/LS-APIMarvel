@@ -73,7 +73,7 @@ let searchResponse = (searchChar) => {
         .join('')
 
     } else {
-        console.log('data.results vazio, nao encontrou nenhum personagem.')
+        console.log('data.results vazio, não encontrou nenhum personagem.')
         let retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
