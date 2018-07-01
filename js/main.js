@@ -32,8 +32,9 @@ let footer = document.querySelector('#footer')
 
 // Função que recebe o resultado de pesquisa
 let searchResponse = (searchChar) => {
-
+    
     if (searchChar.data.results != ''){ 
+        
         console.log('Sucesso ao procurar personagem na API')
         return searchChar.data.results
         .map(
@@ -42,7 +43,7 @@ let searchResponse = (searchChar) => {
                 <div class="card border-0" id="card-style">
                     <div id="img-border">
                         <div id="img-border-background">
-                            <img class="card-img-top rounded-0" src="${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}">
+                            <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
                         </div>
                     </div>
                     <div class="card-body">
@@ -74,6 +75,7 @@ let searchResponse = (searchChar) => {
                 </div>
             </div>`
         )
+        
         .join('')
 
     } else {
