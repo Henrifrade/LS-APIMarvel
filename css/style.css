@@ -28,8 +28,11 @@ body {
     padding: 0%;
     border: 0px !important;
 }
-#btn-modal:hover{
+#btn-modal:hover {
     cursor: pointer;  
+}
+#btn-modal:focus {
+    outline-style: none;
 }
 #search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
     height: 55% !important;
