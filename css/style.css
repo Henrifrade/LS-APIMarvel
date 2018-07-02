@@ -6,24 +6,29 @@ body {
     background-repeat: repeat;
 }
 
-.card:hover {
-    background-color: rgb(228, 228, 228) !important;
-    box-shadow: 5px 5px;
-    border-radius: 0% !important;
-    margin-bottom: 2%;
-}
-
-.card:hover .card-title {
-    padding-left: 10px;
-    background-color: rgb(175, 175, 175) !important;
-    padding-bottom: 5px;
-    box-shadow: 2px 2px;
-}
 #card-style:hover {
-    border: 4px inset gray !important;
-    transition: border .2s linear;
+    border: 6px solid #C82333 !important;
+    box-shadow: 6px 7px rgb(59, 59, 59);
+    border-image-source: linear-gradient(rgb(235, 69, 57), rgb(168, 2, 2)) !important;
+    border-image-slice: 20 !important;
+    margin-bottom: 3%;
+    border-radius: 0px;
 }
-
+#img-card-interior {
+    position: relative;
+}
+#img-card-title {
+    padding-top: 1%;
+    padding-left: 5px;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    background-color: #C82333;
+    color: white;
+    width: 90%;
+    transform: skewX(-6deg);
+    box-shadow: 4px 5px rgb(224, 224, 224);
+}
 #btn-modal {
     padding: 0%;
     border: 0px !important;

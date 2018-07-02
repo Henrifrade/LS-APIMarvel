@@ -41,30 +41,29 @@ let searchResponse = (searchChar) => {
             item =>
             `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
                 <div class="card border-0" id="card-style">
-                    <div id="img-border">
-                        <div id="img-border-background">
+                    <div id="img-card">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
+                        <div id="img-card-interior">
                             <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
+                            <div id="img-card-title">
+                            <h5 class="card-title text-left">${item.name}</h5>
+                            </div>
+                        </button>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-left">${item.name}</h5>
-                    <!-- Button trigger modal -->
-                        <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
-                            <p>Character Info</p>
-                        </button>
-                    </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="t${item.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal fade" id="t${item.id}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><a href="#">${item.name}</a></h5>
+                            <h5 class="modal-title" id="ModalLabel"><a href="#">${item.name}</a></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>${item.description}</p>
+                            <p class="text-justify">${item.description}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
