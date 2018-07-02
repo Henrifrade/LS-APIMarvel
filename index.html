@@ -10,10 +10,11 @@ https://developer.marvel.com/
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Font family: Oswald -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:600" rel="stylesheet">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/sticky-footer-navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Marvelist - Alternative search engine for MARVEL API</title>
   </head>
@@ -33,7 +34,7 @@ https://developer.marvel.com/
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="page2.html">Página de Teste  <span class="badge badge-danger" style="font-size: 9px; vertical-align: top;">Beta</span></a>
+              <a class="nav-link" href="page2.html">Test page  <span class="badge badge-danger" style="font-size: 9px; vertical-align: top;">Beta</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,11 +55,9 @@ https://developer.marvel.com/
       </nav>
 
     <!-- Caixa de pesquisa -->
-    <div class="container">
+    <div class="container" id="searchBox">
       <div class="justify-content-center row ">
-        <div class="col-md-6">
           <h3 class="text-left">Character Index A-Z</h3>
-        </div>
       </div>
       <div class="justify-content-center row" id="search-zone-main">
         <div class="col-md-5">
@@ -97,12 +96,31 @@ https://developer.marvel.com/
       <div class="container" id="loaded"></div>
     </div>
 
-    <div class="container" id="top-characters"></div>
-    
+  <div class="container" id="topCharactersBox">
+    <hr>
+    <div class="justify-content-center row">
+      <h3>Top Characters</h3>
+    </div>
+  </div>
   
-  <footer class="footer">
-  <div class="container">
-    <p class="text-muted" id="footer"></p>
+  <footer class="footer rounded-top">  
+    <div class="container">
+      <p>
+        <i class="fab fa-github"></i>&nbspMARVELIST</i>
+      </p>
+      <hr>
+      <div class="row">
+        <div class="col-10" id="spanFooter">
+          <span class="text-center">Developed by <a href="https://github.com/Brunbg" target="_blank">Bruno Macau</a>, <a href="https://github.com/felipersdf" target="_blank">Felipe Silva</a> and <a href="https://github.com/Henrifrade/" target="_blank">Henrique Frade</a>.</span>
+        </div>
+        <div class="col" id="imgFooter">
+          <a href="https://marvel.com/" title="Data provided by Marvel. © 2018 MARVEL" target="_blank"><img src="images/others/MarvelLogo.svg" alt="Marvel logo" id="marvelLogo"></a>
+          &nbsp
+          <a href="https://www.ifpb.edu.br/" title="IFPB" target="_blank"><img src="images/others/IF.svg" alt="IF logo" id="ifLogo"></a>
+          &nbsp
+          <a href="https://estudante.ifpb.edu.br/cursos/39" title="TSI" target="_blank"><img src="images/others/TSI.svg" alt="TSI logo" id="tsiLogo"></a>
+        </div>
+      </div>
     </div>
   </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

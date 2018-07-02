@@ -39,6 +39,13 @@ body {
 #btn-modal:focus {
     outline-style: none;
 }
+#searchBox {
+    padding-top: 5%;
+}
+#topCharactersBox {
+    padding-top: 5%;
+    height: 50vh;
+}
 #search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
     height: 55% !important;
     width: 100% !important;
@@ -67,6 +74,7 @@ body {
 
 #loaded {
     flex-direction: row;
+    margin-top: 5%;
 }
 
 #search-input {
@@ -81,6 +89,55 @@ body {
     padding-bottom: -10px;
 }
 
+.footer {
+    background-color: rgb(36, 36, 36);
+    position: initial;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    padding-bottom: 1%;
+}
+.footer p {
+    font-size: 20px;
+    padding-top: 3%;
+}
+.footer i {
+    font-size: 35px;
+}
+.footer hr {
+    border-style: groove;
+    border-color: white;
+}
+.footer span {
+    font-size: 14px;
+}
+.footer a {
+    color: grey;
+}
+.footer a:hover {
+    color: #C82333;
+    text-decoration: none;
+}
+
+#ifLogo {
+    width: 20px;
+    height: 30px;
+}
+
+#tsiLogo {
+    width: 35px;
+    height: 35px;
+}
+
+#marvelLogo {
+    width: 60px;
+    height: 30px;
+}
+
+#imgFooter {
+    display: flex;
+    justify-content: space-around;
+}
 /* media queries - com tamanhos padrão do bootstrap */
 
 @media (max-width: 576px) {
@@ -111,7 +168,7 @@ body {
     }
     #card-full {
         display: flex;
-        justify-content: center;
+        text-align: right;
     }
     #card-style {
         width: 70% !important;

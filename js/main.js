@@ -26,7 +26,7 @@ let loadSearch = document.querySelector('#load-search')
 
 
 // footer
-let footer = document.querySelector('#footer')
+//let footer = document.querySelector('#footer')
 
 // ================== Funções =================== //
 
@@ -127,7 +127,7 @@ searchBtn.addEventListener('click', () => {
             } else {
                 console.log('Fetch OK')
                 homeLoaded.innerHTML = searchResponse(searchChar)
-                footer.innerHTML = searchChar.attributionHTML
+                //footer.innerHTML = searchChar.attributionHTML
                 homeLoading.style.display = 'none'
                 homeLoaded.style.display = 'flex'
             }
