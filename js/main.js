@@ -98,13 +98,13 @@ searchBtn.addEventListener('click', () => {
     let searchInput = searchInputElm.value.replace(" ", "%20")
 
     if(searchInputElm.value == ''){
-        let retorno =
+        let retornoNoTyping =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
                 <p>My spider-sense is telling me you should type something.</p>
                 <img src="images/spidermanNoSpace.jpg" style="heigth: 100px; width: 150px;">
             </div>`
-        homeLoaded.innerHTML = retorno
+        homeLoaded.innerHTML = retornoNoTyping
     }else{
         let url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         console.log(url)
@@ -115,8 +115,15 @@ searchBtn.addEventListener('click', () => {
         .then(res => res.json())
         .then(searchChar => {
             if(searchChar.error) {
-                // TO DO
                 console.log('Fetch Erro')
+                let retornoErroAPI =
+                `<div class="text-center col-md-12">
+                    <i class="material-icons">error</i>
+                    <p>API Error.</p>
+                </div>`
+                homeLoaded.innerHTML = retornoErroAPI
+                homeLoading.style.display = 'none'
+                homeLoaded.style.display = 'flex'
             } else {
                 console.log('Fetch OK')
                 homeLoaded.innerHTML = searchResponse(searchChar)
