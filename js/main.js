@@ -5,8 +5,8 @@ const baseUrlStart  = `https://gateway.marvel.com/v1/public/`
 const baseUrlEnd    = `&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad`
 const baseSingleS   = `&ts=1`
 const baseAllStart  = `characters?nameStartsWith=`
-const baseAllEnd    = `&limit=4`
-const baseComics    = ``
+const baseAllEnd    = `&limit=12`
+const baseComics    = `comics?titleStartsWith=`
 const baseSeries    = ``
 const baseStories   = ``
 const baseEvents    = ``
@@ -14,6 +14,9 @@ const baseCreators  = ``
 const baseCharacter = `characters?name=`
 
 // ============ Selecao dos ids do html ============= //
+
+// select input from SearchBox
+let SelectSearch = document.getElementById("inputGroupSelect01")
 
 // load-search
 let searchInputElm = document.querySelector('#search-input')
@@ -31,52 +34,132 @@ let loadSearch = document.querySelector('#load-search')
 // ================== Funções =================== //
 
 // Função que recebe o resultado de pesquisa
-let searchResponse = (searchChar) => {
+let searchResponse = (searchData) => {
     
-    if (searchChar.data.results != ''){ 
+    if (searchData.data.results != ''){ 
         
         console.log('Sucesso ao procurar personagem na API')
-        return searchChar.data.results
-        .map(
-            item =>
-            `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
-                <div class="card border-0" id="card-style">
-                    <div id="img-card">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
-                        <div id="img-card-interior">
-                            <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
-                            <div id="img-card-title">
-                            <h5 class="card-title text-left">${item.name}</h5>
-                            </div>
-                        </button>
-                        </div>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="t${item.id}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel"><a href="#">${item.name}</a></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+        if (SelectSearch.value == "Characters") {
+            return searchData.data.results
+            .map(
+                item =>
+                `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
+                    <div class="card border-0" id="card-style">
+                        <div id="img-card">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
+                            <div id="img-card-interior">
+                                <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
+                                <div id="img-card-title">
+                                <h5 class="card-title text-left">${item.name}</h5>
+                                </div>
                             </button>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <p class="text-justify">${item.description}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="t${item.id}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalLabel"><a href="#">${item.name}</a></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-justify">${item.description}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
                         </div>
                         </div>
                     </div>
+                </div>`
+            )
+            .join('')
+        } else if (SelectSearch.value == "Comics"){
+            return searchData.data.results
+            .map(
+                item =>
+                `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
+                    <div class="card border-0" id="card-style">
+                        <div id="img-card">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
+                            <div id="img-card-interior">
+                                <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
+                                <div id="img-card-title">
+                                <h5 class="card-title text-left">${item.title}</h5>
+                                </div>
+                            </button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="t${item.id}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalLabel"><a href="#">${item.title}</a></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-justify">${item.description}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </div>`
-        )
-        
-        .join('')
-
+                </div>`
+            )
+            .join('')
+        } else {
+            return searchData.data.results
+            .map(
+                item =>
+                `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
+                    <div class="card border-0" id="card-style">
+                        <div id="img-card">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
+                            <div id="img-card-interior">
+                                <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
+                                <div id="img-card-title">
+                                <h5 class="card-title text-left">${item.name}</h5>
+                                </div>
+                            </button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="t${item.id}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalLabel"><a href="#">${item.name}</a></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-justify">${item.description}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>`
+            )
+            .join('')
+        }
     } else {
         console.log('data.results vazio, nao encontrou nenhum personagem.')
         let retorno =
@@ -105,16 +188,23 @@ searchBtn.addEventListener('click', () => {
                 <img src="images/spidermanNoSpace.jpg" style="heigth: 100px; width: 150px;">
             </div>`
         homeLoaded.innerHTML = retornoNoTyping
-    }else{
-        let url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+    }else {
+        let url
+        if (SelectSearch.value == "Characters") {
+            url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Comics") {
+            url = `${baseUrlStart}${baseComics}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else {
+            url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        }
         console.log(url)
         homeLoading.style.display = 'flex'
         homeLoaded.style.display = 'none'
 
     fetch(url)
         .then(res => res.json())
-        .then(searchChar => {
-            if(searchChar.error) {
+        .then(searchData => {
+            if(searchData.error) {
                 console.log('Fetch Erro')
                 let retornoErroAPI =
                 `<div class="text-center col-md-12">
@@ -126,8 +216,8 @@ searchBtn.addEventListener('click', () => {
                 homeLoaded.style.display = 'flex'
             } else {
                 console.log('Fetch OK')
-                homeLoaded.innerHTML = searchResponse(searchChar)
-                //footer.innerHTML = searchChar.attributionHTML
+                homeLoaded.innerHTML = searchResponse(searchData)
+                //footer.innerHTML = searchData.attributionHTML
                 homeLoading.style.display = 'none'
                 homeLoaded.style.display = 'flex'
             }
