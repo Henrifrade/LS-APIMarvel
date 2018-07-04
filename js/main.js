@@ -5,25 +5,30 @@ const baseUrlStart  = `https://gateway.marvel.com/v1/public/`
 const baseUrlEnd    = `&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad`
 const baseSingleS   = `&ts=1`
 const baseAllStart  = `characters?nameStartsWith=`
-const baseAllEnd    = `&limit=12`
+const baseAllEnd    = `&limit=8`
+const baseCharacter = `characters?name=`
 const baseComics    = `comics?titleStartsWith=`
+const baseCreators  = ``
+const baseEvents    = ``
 const baseSeries    = ``
 const baseStories   = ``
-const baseEvents    = ``
-const baseCreators  = ``
-const baseCharacter = `characters?name=`
+
+// variaveis do event listener scroll
+let items
+let itemsTotal = 0
+const itemsPage = 8
 
 // ============ Selecao dos ids do html ============= //
 
 // select input from SearchBox
-let SelectSearch = document.getElementById("inputGroupSelect01")
+let SelectSearch    = document.getElementById("inputGroupSelect01")
 
 // load-search
-let searchInputElm = document.querySelector('#search-input')
-let searchBtn = document.querySelector('#search-btn')
-let homeLoading = document.querySelector('#loading')
-let homeLoaded = document.querySelector('#loaded')
-let loadSearch = document.querySelector('#load-search')
+let searchInputElm  = document.querySelector('#search-input')
+let searchBtn       = document.querySelector('#search-btn')
+let homeLoading     = document.querySelector('#loading')
+let homeLoaded      = document.querySelector('#loaded')
+let loadSearch      = document.querySelector('#load-search')
 
 // top-characters
 
@@ -34,15 +39,15 @@ let loadSearch = document.querySelector('#load-search')
 // ================== Funções =================== //
 
 // Função que recebe o resultado de pesquisa
-let searchResponse = (searchData) => {
+function searchResponse (searchData, offset = 0, limit = itemsPage) {
     
     if (searchData.data.results != ''){ 
         
         console.log('Sucesso ao procurar personagem na API')
         if (SelectSearch.value == "Characters") {
             return searchData.data.results
-            .map(
-                item =>
+            .slice(offset, offset+limit)
+            .map(item =>
                 `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
                     <div class="card border-0" id="card-style">
                         <div id="img-card">
@@ -51,7 +56,7 @@ let searchResponse = (searchData) => {
                             <div id="img-card-interior">
                                 <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
                                 <div id="img-card-title">
-                                <h5 class="card-title text-left">${item.name}</h5>
+                                    <h5 class="card-title text-left">${item.name}</h5>
                                 </div>
                             </button>
                             </div>
@@ -158,7 +163,7 @@ let searchResponse = (searchData) => {
                     </div>
                 </div>`
             )
-            .join('')
+            .join('')       
         }
     } else {
         console.log('data.results vazio, nao encontrou nenhum personagem.')
@@ -173,23 +178,30 @@ let searchResponse = (searchData) => {
     }
 }
 
+
+
 // ================= Event Listeners ================ //
+
 
 // Event Listener do botao de pesquisa
 searchBtn.addEventListener('click', () => {
-    
-    let searchInput = searchInputElm.value.replace(" ", "%20")
 
-    if(searchInputElm.value == ''){
-        let retornoNoTyping =
-            `<div class="text-center col-md-12">
-                <i class="material-icons">error</i>
-                <p>My spider-sense is telling me you should type something.</p>
-                <img src="images/spidermanNoSpace.jpg" style="heigth: 100px; width: 150px;">
-            </div>`
-        homeLoaded.innerHTML = retornoNoTyping
-    }else {
-        let url
+// Funçao original
+
+// correçao de espaço em branco do campo de pesquisa para a url (substituir por regex)
+    let searchInput = searchInputElm.value.replace(" ", "%20")
+// tratamento do campo de input do search
+    let url
+    if(searchInputElm.value == '') {
+    let retornoNoTyping =
+    `<div class="text-center col-md-12">
+        <i class="material-icons">error</i>
+        <p>My spider-sense is telling me you should type something.</p>
+        <img src="images/spidermanNoSpace.jpg" style="heigth: 100px; width: 150px;">
+    </div>`
+    homeLoaded.innerHTML = retornoNoTyping
+    } else {
+        
         if (SelectSearch.value == "Characters") {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else if (SelectSearch.value == "Comics") {
@@ -198,31 +210,18 @@ searchBtn.addEventListener('click', () => {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         }
         console.log(url)
-        homeLoading.style.display = 'flex'
-        homeLoaded.style.display = 'none'
-
-    fetch(url)
-        .then(res => res.json())
+        homeLoading.style.display = "flex"
+        homeLoaded.style.display = "none"  
+        
+        fetch(url)
+        .then(response => response.json())
         .then(searchData => {
-            if(searchData.error) {
-                console.log('Fetch Erro')
-                let retornoErroAPI =
-                `<div class="text-center col-md-12">
-                    <i class="material-icons">error</i>
-                    <p>API Error.</p>
-                </div>`
-                homeLoaded.innerHTML = retornoErroAPI
-                homeLoading.style.display = 'none'
-                homeLoaded.style.display = 'flex'
-            } else {
                 console.log('Fetch OK')
-                homeLoaded.innerHTML = searchResponse(searchData)
-                //footer.innerHTML = searchData.attributionHTML
-                homeLoading.style.display = 'none'
-                homeLoaded.style.display = 'flex'
-            }
+                homeLoaded.innerHTML = searchResponse(searchData, itemsTotal)
+                homeLoading.style.display = "none"
+                homeLoaded.style.display = "flex"
         })
-}
+    }
 })
 
 // Event listerner de Enter e ESC
