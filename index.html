@@ -32,24 +32,13 @@ https://developer.marvel.com/
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#searchBox">Search<span class="badge badge-danger" style="font-size: 9px; vertical-align: top;">Beta</span> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="page2.html">Test page  <span class="badge badge-danger" style="font-size: 9px; vertical-align: top;">Beta</span></a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+              <a class="nav-link" href="#topCharactersBox">Top Characters  </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link" href="#azIndexBox">A-Z Index </a>
             </li>
           </ul>
         </div>
@@ -58,13 +47,13 @@ https://developer.marvel.com/
     <!-- Caixa de pesquisa -->
     <div class="container" id="searchBox">
       <div class="justify-content-center row ">
-          <h3 class="text-left">Character Index A-Z</h3>
+          <h3 class="text-left">Search</h3>
       </div>
       <div class="justify-content-center row" id="search-zone-main">
         <div class="col-md-5">
           <div class="input-group ">
             <div class="input-group-prepend col-md-9">
-                <input type="search" class="form-control" id="search-input" placeholder="Search on Marvelist">
+                <input type="search" class="form-control" id="search-input" placeholder="Find on Marvelist">
             </div>
             <select class="custom-select" id="inputGroupSelect01">
                 <option selected>Filters..</option>
@@ -80,13 +69,6 @@ https://developer.marvel.com/
         </div>
       </div>
       
-      <!-- Tentativa de implementar um [A-Z] que lista todos os personagens por letra 
-      <div class="row">
-        <div class="container" role="group">
-           https://getbootstrap.com/docs/3.3/components/
-          <p class="font-weight-bold text-center text-muted">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
-        </div> 
-      </div> -->
     </div>
 
     <!-- Loading -->
@@ -96,14 +78,19 @@ https://developer.marvel.com/
       </div>
       <div class="container" id="loaded"></div>
     </div>
-
+  <!-- Top Characters -->
   <div class="container" id="topCharactersBox">
     <hr>
     <div class="justify-content-center row">
       <h3>Top Characters</h3>
     </div>
   </div>
-  
+  <!-- A-Z Index -->
+  <div class="container" id="azIndexBox">
+      <hr>
+       <!--https://getbootstrap.com/docs/3.3/components/-->
+      <p class="text-center text-muted">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+  </div>
   <footer class="footer rounded-top">  
     <div class="container">
       <p>
