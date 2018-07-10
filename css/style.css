@@ -29,8 +29,8 @@ body {
 #landing-page-title h1 {
     background-image: url(../images/background/landing-1.jpg);
     -webkit-text-fill-color: rgba(255, 255, 255, 0.466);
-    -webkit-background-clip: text;
-    -webkit-background-size: cover;
+    background-clip: text;
+    background-size: cover;
     font-size: 210px;
     animation: landTitleBack 4.5s linear;
     animation-delay: 0.5s;
@@ -293,7 +293,7 @@ body {
         height: 45vh;
     }
     #landing-page-title h1 {
-        -webkit-background-size: cover;
+        background-size: cover;
         font-size: 2.5rem;
         animation: none;
     }
