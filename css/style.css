@@ -3,26 +3,52 @@ body {
 }
 
 #landing-page-main {
+    border-radius: 0;
     height: 100vh;
-    background: url("../images/background/landing-1.jpg") no-repeat;
+    background: #000;
     background-size: cover;
     background-attachment: fixed;
 }
 #landing-page-interior {
+    color: #fff;
     display: flex;
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    background-color: #fff;
     opacity: 0.9;
     height: 40vh;
     margin-top: 100px;
-    width: 20vw;
-    transform: skewX(-2deg);
 }
 #landing-page-interior i{
     font-size: 60px;
     animation: bounce 2s infinite;
+}
+#landing-page-title {
+    background: linear-gradient(132deg, #C82333, rgb(153, 7, 31))
+}
+#landing-page-title h1 {
+    background-image: url(../images/background/landing-1.jpg);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.466);
+    -webkit-background-clip: text;
+    -webkit-background-size: cover;
+    font-size: 210px;
+    animation: landTitleBack 4.5s linear;
+    animation-delay: 0.5s;
+    margin: 0vh;
+}
+@keyframes landTitleBack {
+    0%   {
+        margin: 5vh;
+        -webkit-text-fill-color: #fff;
+        background-position-x: 0% 0%;
+    }
+    45%  {
+        background-position: 0% 40%;
+    }
+}
+
+#landing-page-subtitle {
+    margin-top: 2vh;
 }
 
 @keyframes bounce {
@@ -265,6 +291,11 @@ body {
     #landing-page-interior {
         width: 60vw;
         height: 45vh;
+    }
+    #landing-page-title h1 {
+        -webkit-background-size: cover;
+        font-size: 2.5rem;
+        animation: none;
     }
 }
 @media (min-width: 1200px) {
