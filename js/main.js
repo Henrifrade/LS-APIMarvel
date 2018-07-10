@@ -1,5 +1,5 @@
 // codigo feito usando o material do ifpb-github
- 
+
 // urls padrão de requisição da API
 const baseUrlStart  = `https://gateway.marvel.com/v1/public/`
 const baseUrlEnd    = `&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801f86df2ba72f6ace4facad`
@@ -20,6 +20,10 @@ const itemsPage = 8
 
 // ============ Selecao dos ids do html ============= //
 
+// select from landing-page-main
+let landingMainDiv  = document.querySelector("#landing-page-main")
+let landingBtn      = document.querySelector("#landing-btn")
+
 // select input from SearchBox
 let SelectSearch    = document.getElementById("inputGroupSelect01")
 
@@ -38,6 +42,12 @@ let loadSearch      = document.querySelector('#load-search')
 
 // ================== Funções =================== //
 
+function cardTitleCharacter (Cname){
+    return `<div id="img-card-title">
+                <h5 class="card-title text-left">${Cname}</h5>
+            </div>`
+}
+
 // Função que recebe o resultado de pesquisa
 function searchResponse (searchData, offset = 0, limit = itemsPage) {
     
@@ -55,9 +65,7 @@ function searchResponse (searchData, offset = 0, limit = itemsPage) {
                             <button type="button" class="text-left btn-link border-0" id="btn-modal" data-toggle="modal" data-target="#t${item.id}">
                             <div id="img-card-interior">
                                 <img class="card-img-top rounded-0" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
-                                <div id="img-card-title">
-                                    <h5 class="card-title text-left">${item.name}</h5>
-                                </div>
+                                ${cardTitleCharacter(item.name)}
                             </button>
                             </div>
                         </div>
@@ -84,6 +92,7 @@ function searchResponse (searchData, offset = 0, limit = itemsPage) {
                 </div>`
             )
             .join('')
+            
         } else if (SelectSearch.value == "Comics"){
             return searchData.data.results
             .map(
@@ -231,4 +240,9 @@ searchInputElm.addEventListener('keyup', () => {
     } else if (event.key === 'Escape') {
         searchInputElm.value = ''
     }
+})
+
+
+landingBtn.addEventListener('click', () => {
+    landingMainDiv.style.display = "none"
 })

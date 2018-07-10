@@ -2,6 +2,82 @@ body {
     font-family: 'Oswald', sans-serif !important;
 }
 
+#landing-page-main {
+    height: 100vh;
+    background: url("../images/background/landing-1.jpg") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#landing-page-interior {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: #fff;
+    opacity: 0.9;
+    height: 40vh;
+    margin-top: 100px;
+    width: 20vw;
+    transform: skewX(-2deg);
+}
+#landing-page-interior i{
+    font-size: 60px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+	40% {
+    transform: translateY(-15px);
+  }
+	60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes leaveLanding {
+    0%  {transform: translateX(0vh);}
+    25% {transform: translateX(25vh);}
+    50% {transform: translateX(50vh);}
+    75% {transform: translateX(75vh);}
+    100%{transform: translateX(100vh);}
+}
+
+#landing-page-interior i:hover {
+    cursor: pointer;
+} 
+#navbar-id {
+    padding: 5px;
+    box-shadow:0px 1px 10px rgb(221, 220, 220);
+}
+#navbarSupportedContent {
+    margin-left: -150px;
+}
+#navbar-menu-1 {
+    transition: background-color 0.6s ease;
+    border-bottom: 5px solid #C82333;
+}
+#navbar-menu-1:hover {
+    background-color: rgb(238, 238, 238);
+    transition: background-color 0.2s;
+}
+#navbar-menu-2 {
+    transition: background-color 0.6s ease;
+    border-bottom: 5px solid rgb(248, 36, 57);
+}
+#navbar-menu-2:hover {
+    background-color: rgb(238, 238, 238);
+}
+#navbar-menu-3 {
+    transition: background-color 0.6s ease;
+    border-bottom: 5px solid rgb(250, 94, 110);
+}
+#navbar-menu-3:hover {
+    background-color: rgb(238, 238, 238);
+}
+
 #card-style:hover {
     border: 6px solid #C82333 !important;
     box-shadow: 6px 7px rgb(59, 59, 59);
@@ -64,9 +140,6 @@ body {
     margin-left: -5%;
 }
 
-#navbar-id {
-    box-shadow:1px 3px 5px rgb(221, 220, 220);
-}
 
 #loaded {
     flex-flow: row wrap;
@@ -135,6 +208,7 @@ body {
     display: flex;
     justify-content: space-around;
 }
+
 /* media queries - com tamanhos padrão do bootstrap */
 
 @media (max-width: 576px) {
@@ -184,6 +258,13 @@ body {
         margin-left: 2.5rem;
         padding-bottom: 5%;
         text-align: center;
+    }
+    #navbarSupportedContent {
+        margin-left: 0px;
+    }
+    #landing-page-interior {
+        width: 60vw;
+        height: 45vh;
     }
 }
 @media (min-width: 1200px) {
