@@ -20,25 +20,26 @@ const itemsPage = 8
 
 // ============ Selecao dos ids do html ============= //
 
-// select from landing-page-main
-let landingMainDiv  = document.querySelector("#landing-page-main")
-let landingBtn      = document.querySelector("#landing-btn")
+// selects from landing-page-main
+let landingMainDiv   = document.querySelector("#landing-page-main")
+let landingBtn       = document.querySelector("#landing-btn")
 
-// select input from SearchBox
-let SelectSearch    = document.getElementById("inputGroupSelect01")
+// selects from input from SearchBox
+let SelectSearch     = document.getElementById("inputGroupSelect01")
 
-// load-search
-let searchInputElm  = document.querySelector('#search-input')
-let searchBtn       = document.querySelector('#search-btn')
-let homeLoading     = document.querySelector('#loading')
-let homeLoaded      = document.querySelector('#loaded')
-let loadSearch      = document.querySelector('#load-search')
+// selects from load-search-box
+let loadSearchBox    = document.querySelector('#load-search-box')
+let searchInputElm   = document.querySelector('#search-input')
+let searchBtn        = document.querySelector('#search-btn')
+let homeLoading      = document.querySelector('#loading')
+let homeLoaded       = document.querySelector('#loaded')
 
-// top-characters
-
-
-// footer
-//let footer = document.querySelector('#footer')
+// selects from top-characters-box
+let topCharactersBox = document.querySelector('#topCharactersBox')
+// selects from az-index-box
+let azIndexBox       = document.querySelector('#azIndexBox')
+// selects from footer-box
+let footerBox        = document.querySelector('#footer')
 
 // ================== Funções =================== //
 
@@ -227,8 +228,12 @@ searchBtn.addEventListener('click', () => {
         .then(searchData => {
                 console.log('Fetch OK')
                 homeLoaded.innerHTML = searchResponse(searchData, itemsTotal)
-                homeLoading.style.display = "none"
-                homeLoaded.style.display = "flex"
+                homeLoading.classList.add('animated')
+                homeLoading.classList.add('zoomOut')
+                $(homeLoading).one("animationend", function(){
+                    $(this).css('display', 'none')
+                    $(homeLoaded).css('display', 'flex')
+                });
         })
     }
 })
@@ -244,5 +249,10 @@ searchInputElm.addEventListener('keyup', () => {
 
 
 landingBtn.addEventListener('click', () => {
-    landingMainDiv.style.display = "none"
+    landingMainDiv.classList.add('animated')
+    landingMainDiv.classList.add('fadeOutUp')
+    $(landingMainDiv).one("animationend", function(){
+        $(this).css('display', 'none')
+        $(mainBox).css('display', 'grid')
+    });
 })
