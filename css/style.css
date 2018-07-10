@@ -50,7 +50,9 @@ body {
     margin-top: 2vh;
     font-size: 3rem;
 }
-
+#search-icon-sub {
+    font-size: 5rem !important;
+}
 #landing-page-interior i:hover {
     cursor: pointer;
 } 
@@ -277,6 +279,9 @@ body {
         -webkit-background-size: cover;
         font-size: 2.5rem;
         animation: none;
+    }
+    #search-icon-sub {
+        font-size: 5rem !important;
     }
     #landing-page-subtitle i {
         margin-top: 2vh;
