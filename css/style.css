@@ -168,7 +168,9 @@ body {
     border: 2px solid #C82333;
     padding-bottom: -10px;
 }
-
+.btn-danger{
+    cursor: pointer;
+}
 .footer {
     background-color: rgb(36, 36, 36);
     position: initial;
