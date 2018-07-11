@@ -107,6 +107,9 @@ body {
     transform: skewX(-6deg);
     box-shadow: 4px 5px rgb(224, 224, 224);
 }
+#btnLoadMore:focus {
+    outline-style: none;
+}
 #btn-modal {
     padding: 0%;
     border: 0px !important;

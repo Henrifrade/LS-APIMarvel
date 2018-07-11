@@ -6,6 +6,7 @@ const baseUrlEnd    = `&apikey=718d9655e79167925631daa64018feda&hash=dbe4e709801
 const baseSingleS   = `&ts=1`
 const baseAllStart  = `characters?nameStartsWith=`
 const baseAllEnd    = `&limit=8`
+let   baseOffset    = `&offset=0`
 const baseCharacter = `characters?name=`
 const baseComics    = `comics?titleStartsWith=`
 const baseCreators  = ``
@@ -13,10 +14,11 @@ const baseEvents    = ``
 const baseSeries    = ``
 const baseStories   = ``
 
-// variaveis do event listener scroll
-let items
-let itemsTotal = 0
-const itemsPage = 8
+// variaveis do event listener load more
+let loadOffset = 0
+let loadLimit = 8
+let fetchedUrl
+let lastInput
 
 // ============ Selecao dos ids do html ============= //
 
@@ -49,15 +51,24 @@ function cardTitleCharacter (Cname){
             </div>`
 }
 
+function testDescription(description) {
+
+    if (description == ''){
+        return `No description.`
+    } else {
+        return description
+    }
+}
+
 // Função que recebe o resultado de pesquisa
-function searchResponse (searchData, offset = 0, limit = itemsPage) {
+function searchResponse (searchData) {
     
     if (searchData.data.results != ''){ 
-        
+        console.log(loadOffset,loadLimit)
+        console.log(fetchedUrl)
         console.log('Sucesso ao procurar personagem na API')
         if (SelectSearch.value == "Characters") {
             return searchData.data.results
-            .slice(offset, offset+limit)
             .map(item =>
                 `<div class="col-md-3" id="card-full" style="margin-bottom: 2%;">
                     <div class="card border-0" id="card-style">
@@ -75,13 +86,22 @@ function searchResponse (searchData, offset = 0, limit = itemsPage) {
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="ModalLabel"><a href="#">${item.name}</a></h5>
+                                <h5 class="modal-title" id="ModalLabel"><a href="${item.urls[0].url}" target="_blank">${item.name}</a></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p class="text-justify">${item.description}</p>
+                                <p>Description:</p>
+                                <p class="text-justify">${testDescription(item.description)}</p>
+                                <p>Comics: ${item.comics.available}</p>
+                                <p><ul>${item.comics.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
+                                <p>Series: ${item.series.available}</p>
+                                <p><ul>${item.series.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
+                                <p>Stories: ${item.stories.available}</p>
+                                <p><ul>${item.stories.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
+                                <p>Events: ${item.events.available}</p>
+                                <p><ul>${item.events.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -176,14 +196,25 @@ function searchResponse (searchData, offset = 0, limit = itemsPage) {
             .join('')       
         }
     } else {
+        let retorno
         console.log('data.results vazio, nao encontrou nenhum personagem.')
-        let retorno =
+        if(loadOffset > 0){
+            retorno =
             `<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
-                <p style="margin-bottom:0px">Character not found!</p>
+                <p style="margin-bottom:0px">Nothing to show anymore!</p>
+                <p>Hulk gonna smash if you keep pressing.</p>
+                <img src="images/loadedAll.png" style="heigth: 100px; width: 150px;">
+            </div>`
+        } else {
+            retorno =
+            `<div class="text-center col-md-12">
+                <i class="material-icons">error</i>
+                <p style="margin-bottom:0px">Can't find!</p>
                 <p>I guess my maximum effort doesn't work anymore.</p>
                 <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
             </div>`
+        }
         return retorno
     }
 }
@@ -196,10 +227,9 @@ function searchResponse (searchData, offset = 0, limit = itemsPage) {
 // Event Listener do botao de pesquisa
 searchBtn.addEventListener('click', () => {
 
-// Funçao original
-
 // correçao de espaço em branco do campo de pesquisa para a url (substituir por regex)
     let searchInput = searchInputElm.value.replace(" ", "%20")
+    lastInput = searchInput
 // tratamento do campo de input do search
     let url
     if(searchInputElm.value == '') {
@@ -213,27 +243,30 @@ searchBtn.addEventListener('click', () => {
     } else {
         
         if (SelectSearch.value == "Characters") {
-            url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+            url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else if (SelectSearch.value == "Comics") {
             url = `${baseUrlStart}${baseComics}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         }
-        console.log(url)
+        console.log('event listener busca')
         homeLoading.style.display = "flex"
         homeLoaded.style.display = "none"  
-        
+        fetchedUrl = url
         fetch(url)
         .then(response => response.json())
         .then(searchData => {
                 console.log('Fetch OK')
-                homeLoaded.innerHTML = searchResponse(searchData, itemsTotal)
+                loadOffset = 0
+                if (lastInput != searchInput){
+                    homeLoaded.insertAdjacentHTML('afterbegin', searchResponse(searchData))
+                } else {
+                    homeLoaded.innerHTML = searchResponse(searchData)
+                }
                 homeLoading.classList.add('animated')
                 homeLoading.classList.add('zoomOut')
-                $(homeLoading).one("animationend", function(){
-                    $(this).css('display', 'none')
-                    $(homeLoaded).css('display', 'flex')
-                });
+                homeLoading.style.display = 'none'
+                homeLoaded.style.display = 'flex'
         })
     }
 })
@@ -247,12 +280,35 @@ searchInputElm.addEventListener('keyup', () => {
     }
 })
 
-
+// Event listener do botao da landing page
 landingBtn.addEventListener('click', () => {
     landingMainDiv.classList.add('animated')
     landingMainDiv.classList.add('fadeOutUp')
     $(landingMainDiv).one("animationend", function(){
         $(this).css('display', 'none')
-        $(mainBox).css('display', 'grid')
     });
+})
+
+// Event listener de carregar mais da busca
+
+document.querySelector('#btnLoadMore').addEventListener('click', () => {
+    let click
+    click++
+    if(click != 0){
+        loadOffset = loadOffset+loadLimit
+        let searchInput = searchInputElm.value.replace(" ", "%20")
+        if (SelectSearch.value == "Characters") {
+            url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Comics") {
+            url = `${baseUrlStart}${baseComics}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else {
+            url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        }
+        fetchedUrl = url
+    }
+    fetch(fetchedUrl)
+    .then(response2 => response2.json())
+    .then(searchDataLoaded => {
+        homeLoaded.insertAdjacentHTML('beforeend', searchResponse(searchDataLoaded))
+    })
 })
