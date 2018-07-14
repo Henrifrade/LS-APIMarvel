@@ -6,10 +6,10 @@ Inspired on Marvel Comics site.
 ## Prototypes (Protótipos)
 [Wireframes](https://github.com/Henrifrade/Marvelist/tree/master/wireframe)
 ## API Resources (Recursos da API)
-The Marvel Comics API can provide info about:
-*Characters
-*Comics
-*Creators
-*Events
-*Series
-*Stories
+#### The Marvel Comics API can provide info about:
+* Characters
+* Comics
+* Creators
+* Events
+* Series
+* Stories
