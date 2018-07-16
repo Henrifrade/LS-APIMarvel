@@ -35,6 +35,7 @@ let searchInputElm   = document.querySelector('#search-input')
 let searchBtn        = document.querySelector('#search-btn')
 let homeLoading      = document.querySelector('#loading')
 let homeLoaded       = document.querySelector('#loaded')
+let btnLoadMore      = document.querySelector('#btnLoadMore')
 
 // selects from top-characters-box
 let topCharactersBox = document.querySelector('#topCharactersBox')
@@ -267,6 +268,7 @@ searchBtn.addEventListener('click', () => {
                 homeLoading.classList.add('zoomOut')
                 homeLoading.style.display = 'none'
                 homeLoaded.style.display = 'flex'
+                btnLoadMore.style.display = 'flex'
         })
     }
 })
@@ -292,7 +294,7 @@ landingBtn.addEventListener('click', () => {
 
 // Event listener de carregar mais da busca
 
-document.querySelector('#btnLoadMore').addEventListener('click', () => {
+btnLoadMore.addEventListener('click', () => {
     let click
     click++
     if(click != 0){
