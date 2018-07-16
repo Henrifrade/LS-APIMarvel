@@ -36,6 +36,7 @@ let searchBtn        = document.querySelector('#search-btn')
 let homeLoading      = document.querySelector('#loading')
 let homeLoaded       = document.querySelector('#loaded')
 let btnLoadMore      = document.querySelector('#btnLoadMore')
+btnLoadMore.disabled = true;
 
 // selects from top-characters-box
 let topCharactersBox = document.querySelector('#topCharactersBox')
@@ -43,9 +44,7 @@ let topCharactersBox = document.querySelector('#topCharactersBox')
 let azIndexBox       = document.querySelector('#azIndexBox')
 // selects from footer-box
 let footerBox        = document.querySelector('#footer')
-// selects from button Load More
-let btnLoadMore      = document.querySelector('#btnLoadMore')
-btnLoadMore.disabled = true;
+
 
 // ================== Funções =================== //
 // Corrige a posição do scroll quando recarrega a pagina em um ponto fora do topo da pagina, resolvendo um problema de quebra de local onde é exibido a div da landing page
@@ -270,9 +269,9 @@ searchBtn.addEventListener('click', () => {
                 <p style="margin-bottom:0px">Can't find!</p>
                 <p>I guess my maximum effort doesn't work anymore.</p>
                 <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
-                </div>` ){
-                    btnLoadMore.disabled = true;
-                }
+                </div>`){
+                    btnLoadMore.disabled = true; 
+        } 
                 if (lastInput != searchInput){
                     homeLoaded.insertAdjacentHTML('afterbegin', searchResponse(searchData))
                 } else {
