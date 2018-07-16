@@ -175,6 +175,17 @@ body {
     border: 2px solid #C82333;
     padding-bottom: -10px;
 }
+.text-ceneter{
+    list-style: none;
+    display: inline;
+}
+.alfabeto{
+    transition: all 0.8;
+}
+.alfabeto:hover{
+    cursor: pointer;
+    color: #000 !important;
+}
 .btn-danger{
     cursor: pointer;
 }
