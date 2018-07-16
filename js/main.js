@@ -43,6 +43,9 @@ let topCharactersBox = document.querySelector('#topCharactersBox')
 let azIndexBox       = document.querySelector('#azIndexBox')
 // selects from footer-box
 let footerBox        = document.querySelector('#footer')
+// selects from button Load More
+let btnLoadMore      = document.querySelector('#btnLoadMore')
+btnLoadMore.disabled = true;
 
 // ================== Funções =================== //
 
@@ -234,6 +237,7 @@ searchBtn.addEventListener('click', () => {
 // tratamento do campo de input do search
     let url
     if(searchInputElm.value == '') {
+    btnLoadMore.disabled = true;
     let retornoNoTyping =
     `<div class="text-center col-md-12">
         <i class="material-icons">error</i>
@@ -242,7 +246,7 @@ searchBtn.addEventListener('click', () => {
     </div>`
     homeLoaded.innerHTML = retornoNoTyping
     } else {
-        
+        btnLoadMore.disabled = false;
         if (SelectSearch.value == "Characters") {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else if (SelectSearch.value == "Comics") {
@@ -259,6 +263,14 @@ searchBtn.addEventListener('click', () => {
         .then(searchData => {
                 console.log('Fetch OK')
                 loadOffset = 0
+            if (searchResponse(searchData) == `<div class="text-center col-md-12">
+                <i class="material-icons">error</i>
+                <p style="margin-bottom:0px">Can't find!</p>
+                <p>I guess my maximum effort doesn't work anymore.</p>
+                <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
+                </div>` ){
+                    btnLoadMore.disabled = true;
+                }
                 if (lastInput != searchInput){
                     homeLoaded.insertAdjacentHTML('afterbegin', searchResponse(searchData))
                 } else {

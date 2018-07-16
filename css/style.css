@@ -175,16 +175,23 @@ body {
     border: 2px solid #C82333;
     padding-bottom: -10px;
 }
-.text-center{
-    list-style: none;
-    display: inline;
-}
 .alfabeto{
     transition: all 0.8;
+    list-style: none;
+    display: inline;
 }
 .alfabeto:hover{
     cursor: pointer;
     color: #000 !important;
+}
+#btnLoadMore:focus{
+    outline-style: none;
+}
+#btnLoadMore:disabled{
+    display: none;
+}
+#btnLoadMore:enabled{
+    display: inline-block;
 }
 .btn-danger{
     cursor: pointer;
