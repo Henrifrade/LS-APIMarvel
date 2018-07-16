@@ -286,6 +286,7 @@ landingBtn.addEventListener('click', () => {
     landingMainDiv.classList.add('fadeOutUp')
     $(landingMainDiv).one("animationend", function(){
         $(this).css('display', 'none')
+        $(document.body).css('overflow', 'auto')
     });
 })
 

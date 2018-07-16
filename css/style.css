@@ -1,5 +1,6 @@
 body {
     font-family: 'Oswald', sans-serif !important;
+    overflow-y: hidden;
 }
 
 #landing-page-main {
@@ -24,7 +25,7 @@ body {
 }
 #landing-page-title h1 {
     background-image: url(../images/background/landing-1.jpg);
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.466);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.979);
     -webkit-background-clip: text;
     -webkit-background-size: cover;
     font-size: 12rem;
@@ -35,25 +36,31 @@ body {
 @keyframes landTitleBack {
     0%   {
         margin: 5vh;
-        -webkit-text-fill-color: rgba(255, 255, 255, 0.849);
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.534);
         background-position-x: 50% 30%;
     }
     50%  {
-        background-position: 0% 20%;
-    }
-    100%  {
         background-position: 100% 0%;
     }
+    100%  {
+        background-position: 0% 20%;
+    }
 }
-
 #landing-page-subtitle i {
     margin-top: 2vh;
     font-size: 3rem;
 }
 #search-icon-sub {
     font-size: 5rem !important;
+    background-color: #333;
+    border-radius: 25%;
+}
+#search-icon-sub:hover {
+    background-color: #C82333;
+    border-radius: 25%;
 }
 #landing-page-interior i:hover {
+    
     cursor: pointer;
 } 
 #navbar-id {
