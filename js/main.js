@@ -45,6 +45,8 @@ let azIndexBox       = document.querySelector('#azIndexBox')
 let footerBox        = document.querySelector('#footer')
 
 // ================== Funções =================== //
+// Corrige a posição do scroll quando recarrega a pagina em um ponto fora do topo da pagina, resolvendo um problema de quebra de local onde é exibido a div da landing page
+window.onbeforeunload = function() {window.scrollTo(0,0);}
 
 function cardTitleCharacter (Cname){
     return `<div id="img-card-title">

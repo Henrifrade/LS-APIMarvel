@@ -133,6 +133,32 @@ body {
 #topCharactersBox {
     padding-top: 10vw;
 }
+#topcharacters-main {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+#top-char-image img {
+    border: 1px solid black;
+    border-radius: 2%;
+    width: 250px;
+    height: 350px;
+    z-index: 1;
+}
+#top-char-image img:hover {
+    position: relative;
+    animation: teste 2s ease-in;
+}
+@keyframes teste {
+    0% {
+        margin-right: 0px;
+    }
+    50% {
+        margin-right: 100px;
+    }
+    100% {
+        margin-right: 200px;
+    }
+}
 #azIndexBox {
     padding-top: 10vw;
 }
