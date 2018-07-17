@@ -117,6 +117,12 @@ body {
 #btnLoadMore:focus {
     outline-style: none;
 }
+#btnLoadMore:disabled{
+    display:none !important;
+}
+#btnLoadMore:enabled{
+    display:inline-block !important;
+}
 #btn-modal {
     padding: 0%;
     border: 0px !important;

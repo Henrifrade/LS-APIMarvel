@@ -19,7 +19,7 @@ let loadOffset = 0
 let loadLimit = 8
 let fetchedUrl
 let lastInput
-
+let cont=0
 // ============ Selecao dos ids do html ============= //
 
 // selects from landing-page-main
@@ -36,7 +36,7 @@ let searchBtn        = document.querySelector('#search-btn')
 let homeLoading      = document.querySelector('#loading')
 let homeLoaded       = document.querySelector('#loaded')
 let btnLoadMore      = document.querySelector('#btnLoadMore')
-btnLoadMore.disabled = true;
+btnLoadMore.disabled = true
 
 // selects from top-characters-box
 let topCharactersBox = document.querySelector('#topCharactersBox')
@@ -231,7 +231,7 @@ function searchResponse (searchData) {
 
 // Event Listener do botao de pesquisa
 searchBtn.addEventListener('click', () => {
-
+    cont=0
 // correçao de espaço em branco do campo de pesquisa para a url (substituir por regex)
     let searchInput = searchInputElm.value.replace(" ", "%20")
     lastInput = searchInput
@@ -264,14 +264,16 @@ searchBtn.addEventListener('click', () => {
         .then(searchData => {
                 console.log('Fetch OK')
                 loadOffset = 0
-            if (searchResponse(searchData) == `<div class="text-center col-md-12">
+                let x=searchResponse(searchData)
+                let y=`<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
                 <p style="margin-bottom:0px">Can't find!</p>
                 <p>I guess my maximum effort doesn't work anymore.</p>
                 <img src="images/notFoundImage.png" style="heigth: 100px; width: 150px;">
-                </div>`){
-                    btnLoadMore.disabled = true; 
-        } 
+            </div>`
+                if(x==y){
+                    btnLoadMore.disabled = true;
+                }
                 if (lastInput != searchInput){
                     homeLoaded.insertAdjacentHTML('afterbegin', searchResponse(searchData))
                 } else {
@@ -325,6 +327,20 @@ btnLoadMore.addEventListener('click', () => {
     fetch(fetchedUrl)
     .then(response2 => response2.json())
     .then(searchDataLoaded => {
-        homeLoaded.insertAdjacentHTML('beforeend', searchResponse(searchDataLoaded))
-    })
+        nothingShow=`<div class="text-center col-md-12">
+                <i class="material-icons">error</i>
+                <p style="margin-bottom:0px">Nothing to show anymore!</p>
+                <p>Hulk gonna smash if you keep pressing.</p>
+                <img src="images/loadedAll.png" style="heigth: 100px; width: 150px;">
+            </div>`
+        res=searchResponse(searchDataLoaded)
+        console.log('cont É',cont)
+        if(res == nothingShow && cont<1){
+            console.log("entrou aqui 1")
+            cont+=1
+            homeLoaded.insertAdjacentHTML('beforeend', searchResponse(searchDataLoaded))
+            btnLoadMore.disabled = true;     
+       }else if(res != nothingShow){
+        homeLoaded.insertAdjacentHTML('beforeend', searchResponse(searchDataLoaded))  
+    }})
 })
