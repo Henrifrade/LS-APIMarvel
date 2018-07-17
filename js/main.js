@@ -9,10 +9,9 @@ const baseAllEnd    = `&limit=8`
 let   baseOffset    = `&offset=0`
 const baseCharacter = `characters?name=`
 const baseComics    = `comics?titleStartsWith=`
-const baseCreators  = ``
-const baseEvents    = ``
-const baseSeries    = ``
-const baseStories   = ``
+const baseCreators  = `creators?nameStartsWith=`
+const baseEvents    = `events?nameStartsWith=`
+const baseSeries    = `series?titleStartsWith=`
 
 // variaveis do event listener load more
 let loadOffset = 0
@@ -49,6 +48,12 @@ let footerBox        = document.querySelector('#footer')
 // ================== Funções =================== //
 // Corrige a posição do scroll quando recarrega a pagina em um ponto fora do topo da pagina, resolvendo um problema de quebra de local onde é exibido a div da landing page
 window.onbeforeunload = function() {window.scrollTo(0,0);}
+
+
+// Card Modular
+
+
+
 
 function cardTitleCharacter (Cname){
     return `<div id="img-card-title">
@@ -91,24 +96,26 @@ function searchResponse (searchData) {
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="ModalLabel"><a href="${item.urls[0].url}" target="_blank">${item.name}</a></h5>
+                                <h5 class="modal-title" id="ModalLabel"><a href="${item.urls[0].url}" target="_blank" style="color: #C82333; text-decoration: none;">${item.name}</a></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>    
                             </div>
+                            
+                            <img id="modal-img" src="${item.thumbnail.path.replace("http", "https")}/portrait_uncanny.${item.thumbnail.extension}">
                             <div class="modal-body">
-                                <p>Description:</p>
+                                <p class="text-justify" id="modal-texts">Description:</p>
                                 <p class="text-justify">${testDescription(item.description)}</p>
-                                <p>Comics: ${item.comics.available}</p>
-                                <p><ul>${item.comics.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
-                                <p>Series: ${item.series.available}</p>
-                                <p><ul>${item.series.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
-                                <p>Stories: ${item.stories.available}</p>
-                                <p><ul>${item.stories.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
-                                <p>Events: ${item.events.available}</p>
-                                <p><ul>${item.events.items.map(items => `<li>${items.name}</li>`).join('')}</ul></p>
+                                <p class="text-justify" id="modal-texts">Comics: ${item.comics.available}</p>
+                                <p class="text-justify">${item.comics.items.map(items => `${items.name}`).join(', ')}.</p>
+                                <p class="text-justify" id="modal-texts">Series: ${item.series.available}</p>
+                                <p class="text-justify">${item.series.items.map(items => `${items.name}`).join(', ')}.</p>
+                                <p class="text-justify" id="modal-texts">Stories: ${item.stories.available}</p>
+                                <p class="text-justify">${item.stories.items.map(items => `${items.name}`).join(', ')}.</p>
+                                <p class="text-justify" id="modal-texts">Events: ${item.events.available}</p>
+                                <p class="text-justify">${item.events.items.map(items => `${items.name}`).join(', ')}.</p>
                             </div>
-                            <div class="modal-footer">
+                            <div class="justify-content-center modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                             </div>
@@ -251,7 +258,13 @@ searchBtn.addEventListener('click', () => {
         if (SelectSearch.value == "Characters") {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else if (SelectSearch.value == "Comics") {
-            url = `${baseUrlStart}${baseComics}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+            url = `${baseUrlStart}${baseComics}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Creators") {
+            url = `${baseUrlStart}${baseCreators}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Events") {
+            url = `${baseUrlStart}${baseEvents}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Series") {
+            url = `${baseUrlStart}${baseSeries}${searchInput}${baseOffset}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         }
@@ -303,7 +316,7 @@ landingBtn.addEventListener('click', () => {
     landingMainDiv.classList.add('fadeOutUp')
     $(landingMainDiv).one("animationend", function(){
         $(this).css('display', 'none')
-        $(document.body).css('overflow', 'auto')
+        $(document.body).css('overflow', 'scroll')
     });
 })
 
@@ -319,6 +332,12 @@ btnLoadMore.addEventListener('click', () => {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else if (SelectSearch.value == "Comics") {
             url = `${baseUrlStart}${baseComics}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Creators") {
+            url = `${baseUrlStart}${baseCreators}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Events") {
+            url = `${baseUrlStart}${baseEvents}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
+        } else if (SelectSearch.value == "Series") {
+            url = `${baseUrlStart}${baseSeries}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         } else {
             url = `${baseUrlStart}${baseAllStart}${searchInput}${baseOffset.replace(/.$/,loadOffset)}${baseAllEnd}${baseSingleS}${baseUrlEnd}`
         }
@@ -330,7 +349,7 @@ btnLoadMore.addEventListener('click', () => {
         nothingShow=`<div class="text-center col-md-12">
                 <i class="material-icons">error</i>
                 <p style="margin-bottom:0px">Nothing to show anymore!</p>
-                <p>Hulk gonna smash if you keep pressing.</p>
+                <p>Hulk gonna smash!</p>
                 <img src="images/loadedAll.png" style="heigth: 100px; width: 150px;">
             </div>`
         res=searchResponse(searchDataLoaded)

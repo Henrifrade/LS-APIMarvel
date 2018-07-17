@@ -137,18 +137,20 @@ body {
     padding-top: 10vw;
 }
 #topCharactersBox {
-    padding-top: 10vw;
+    margin-top: 10vw;
 }
 #topcharacters-main {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
 #top-char-image img {
-    border: 1px solid black;
-    border-radius: 2%;
-    width: 250px;
-    height: 350px;
+    border: 3px solid black;
+    box-shadow: 4px 4px #C82333;
+    border-radius: 1%;
+    width: 150px;
+    height: 200px;
     z-index: 1;
+    margin-bottom: 10px;
 }
 #top-char-image img:hover {
     position: relative;
@@ -166,7 +168,7 @@ body {
     }
 }
 #azIndexBox {
-    padding-top: 10vw;
+    padding-top: 2vw;
 }
 #search-zone-main input[type="search"], #search-zone-main button[type="submit"]{
     height: 55% !important;
@@ -277,6 +279,13 @@ body {
 #imgFooter {
     display: flex;
     justify-content: space-around;
+}
+#modal-img {
+    object-fit: cover;
+    object-position: 0px -100px;
+}
+#modal-texts {
+    font-weight: 600 !important;
 }
 
 /* media queries - com tamanhos padrão do bootstrap */
