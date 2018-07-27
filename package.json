@@ -1,0 +1,33 @@
+{
+  "name": "Marvelist",
+  "version": "1.0.0",
+  "description": "A project made with HTML5, CSS & JavaScript. The objective is to practice JavaScript in a project for the [*Linguagem de Script*](https://github.com/ifpb/ls) course.  The data used is provided by Marvel. © 2014 Marvel Comics API.\r ## Inspiration (Inspiração)\r Inspired on Marvel Comics site.\r ## Prototypes (Protótipos)\r [Wireframes](https://github.com/Henrifrade/Marvelist/tree/master/wireframe)\r ## API Resources (Recursos da API)\r #### The Marvel Comics API can provide info about:\r * Characters\r * Comics\r * Creators\r * Events\r * Series\r * Stories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Henrifrade/Marvelist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Henrifrade/Marvelist/issues"
+  },
+  "homepage": "https://github.com/Henrifrade/Marvelist#readme",
+  "dependencies": {
+    "scrollmagic": "^2.0.5"
+  },
+  "devDependencies": {
+    "@webpack-cli/init": "^0.1.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
+  }
+}
